@@ -1,46 +1,37 @@
 #include "grafo.h"
-#include "parser.h"
-#include <fstream>
 #include <iostream>
 
-void Grafo::verificar_nodos(int instruccion_actual,int instruccion_anterior,std::string linea){
-  if(instruccion_actual == COMUN){
-    this->aniadir_nodo(linea);
-
-  }
+Grafo::Grafo(){
+  nodos = std::vector<std::vector<std::string>>();
 }
-
-void Grafo::inicializar_nodos(const std::string archivo){
-  Parser parser = Parser();
-  std::ifstream fs;
-  fs.open(archivo);
-  int instruccion_actual,instruccion_anterior = -1;
-  if(fs){
-    std::string linea;
-    while (std::getline(fs,linea,'\n')){
-      if(linea.size() != 0){
-        instruccion_actual = parser.parsear_linea(linea);
-        this->verificar_nodos(instruccion_actual,instruccion_anterior,linea);
-        instruccion_anterior = instruccion_actual;
-      }
-    }
-  fs.close();
-  }
-}
-
-
-Grafo::Grafo(const std::string archivo){
-  this->nodos = std::list<std::list<std::string>>();
-  this->inicializar_nodos(archivo);
+Grafo::Grafo(const Grafo &grafo){
+  this->nodos = grafo.nodos;
 }
 Grafo::~Grafo(){
+
 }
+
+void Grafo::aniadir_arista(const std::string instruccion){
+  std::string nodo_agregar(instruccion);
+  this->nodos.back().push_back(nodo_agregar);
+}
+
 void Grafo::aniadir_nodo(const std::string instruccion){
   std::string nodo_agregar(instruccion);
-  if(this->nodos.size() != 0){
-    this->nodos.back().push_back(nodo_agregar);
-  }
-  this->nodos.push_back(std::list<std::string>());
+  this->nodos.push_back(std::vector<std::string>());
   this->nodos.back().push_back(nodo_agregar);
-  std::cout << "agrego " <<nodo_agregar << '\n';
+}
+void Grafo::aniadir_nodo_en_posicion(int posicion,std::string instruccion){
+  std::string nodo_agregar(instruccion);
+  this->nodos.at(posicion).push_back(nodo_agregar);
+}
+int Grafo::buscar_posicion_nodo(std::string etiqueta)const{
+  int elementos = this->nodos.size();
+  int pos_buscada = -1;
+  for(int i = 0; i < elementos; i++){
+    pos_buscada = this->nodos.at(i).at(0).find(etiqueta);
+    std::cout << this->nodos.at(i).at(0) <<'\n';
+
+  }
+  return pos_buscada;
 }

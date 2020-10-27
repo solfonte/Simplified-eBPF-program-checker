@@ -1,18 +1,19 @@
 #ifndef __GRAFO_H__
 #define __GRAFO_H__
 
-#include "parser.h"
-#include <cstring>
-#include <list>
+#include <string>
+#include <vector>
 
 class Grafo{
   public:
-    Grafo(const std::string archivo);
+    Grafo();
+    Grafo(const Grafo &grafo);
     ~Grafo();
+    void aniadir_arista(const std::string instruccion);
     void aniadir_nodo(const std::string instruccion);
+    void aniadir_nodo_en_posicion(int posicion,std::string instruccion);
+    int buscar_posicion_nodo(std::string etiqueta)const;
   private:
-    std::list<std::list<std::string>> nodos;
-    void inicializar_nodos(const std::string archivo);
-    void verificar_nodos(int instruccion_actual,int instruccion_anterior,std::string linea);
+    std::vector<std::vector<std::string>> nodos;
 };
 #endif
