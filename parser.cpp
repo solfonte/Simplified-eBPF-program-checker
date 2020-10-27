@@ -1,17 +1,17 @@
 #include "parser.h"
-#include <fstream>
 #include <iostream>
 #include <vector>
-/*
-Parser::Parser(const std::string &nombre_archivo){
-  this->archivo = nombre_archivo;
+//cambiar los static a privados
+
+Parser::Parser(){
+  //this->archivo = nombre_archivo;
 }
 
 Parser::~Parser(){
 
 }
 
-*/
+
 static bool verifica_etiqueta(std::string linea){
   ssize_t pos_dos_puntos(linea.find(":"));
   if(pos_dos_puntos < -1){
@@ -39,22 +39,25 @@ static bool verifica_salto(std::string linea){
   return hay_salto;
 }
 
-static void parsear_linea(std::string linea){//podria devolver un nodo
+int Parser::parsear_linea(const std::string linea) const{
   ssize_t pos_return(linea.find("ret"));
-
     if (verifica_etiqueta(linea)){
       std::cout << "soy una etiqueta" << "\n";
+      return ETIQUETA;
     }
     if (verifica_return(linea)){
       std::cout << "soy un return" << "\n";
+      return RETURN;
     }else if (verifica_salto(linea)){
-      std::cout << "soy un return" << "\n";
+      std::cout << "soy un salto" << "\n";
+      return SALTO;
     }else{
       std::cout << "soy comun" << "\n";
+      return COMUN;
     }
 }
 
-void Parser::run() const{
+/*void Parser::run() const{
   std::ifstream fs;
   fs.open(this->archivo);
 
@@ -68,5 +71,5 @@ void Parser::run() const{
 
     }
   fs.close();
-  }
 }
+}*/
