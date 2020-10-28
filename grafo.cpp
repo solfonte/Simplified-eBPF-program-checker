@@ -2,36 +2,66 @@
 #include <iostream>
 
 Grafo::Grafo(){
-  nodos = std::vector<std::vector<std::string>>();
+  nodos = std::vector<Nodo>();
 }
+
 Grafo::Grafo(const Grafo &grafo){
   this->nodos = grafo.nodos;
 }
-Grafo::~Grafo(){
 
+Grafo::~Grafo(){
 }
 
-void Grafo::aniadir_arista(const std::string instruccion){
-  std::string nodo_agregar(instruccion);
-  this->nodos.back().push_back(nodo_agregar);
+void Grafo::aniadir_arista(const std::string instruccion,const std::string instruccion_conectar){
+  //Nodo nodo(instruccion_conectar);
+  std::cout << instruccion << '\n';
+  std::cout << instruccion_conectar << '\n';
+
+  int pos_nodo_agregar_arista = this->buscar_nodo(instruccion);
+  int pos_nodo_apuntar = this->buscar_nodo(instruccion_conectar);
+  std::cout << pos_nodo_agregar_arista << '\n';
+  std::cout << pos_nodo_apuntar << '\n';
+  Nodo& nodo_aniadir_arista = this->nodos[pos_nodo_agregar_arista];
+  Nodo& nodo_apuntar = this->nodos[pos_nodo_apuntar];
+  nodo_aniadir_arista.aniadir_vecino(&nodo_apuntar);
 }
 
 void Grafo::aniadir_nodo(const std::string instruccion){
-  std::string nodo_agregar(instruccion);
-  this->nodos.push_back(std::vector<std::string>());
-  this->nodos.back().push_back(nodo_agregar);
-}
-void Grafo::aniadir_nodo_en_posicion(int posicion,std::string instruccion){
-  std::string nodo_agregar(instruccion);
-  this->nodos.at(posicion).push_back(nodo_agregar);
-}
-int Grafo::buscar_posicion_nodo(std::string etiqueta)const{
-  int elementos = this->nodos.size();
-  int pos_buscada = -1;
-  for(int i = 0; i < elementos; i++){
-    pos_buscada = this->nodos.at(i).at(0).find(etiqueta);
-    std::cout << this->nodos.at(i).at(0) <<'\n';
+  std::cout << instruccion << '\n';
 
+  Nodo nodo(instruccion);
+  this->nodos.push_back(nodo);
+}
+
+int Grafo::buscar_nodo(const std::string instruccion) const{
+  int cantidad_nodos = this->nodos.size();
+
+  int posicion = -1;
+  for (int i = 0; i < cantidad_nodos; i++){
+    std::string instruccion_buscada = this->nodos[i].obtener_instruccion();
+  //  std::cout << "obtengo " <<instruccion_buscada << "y busco" << instruccion<< '\n';
+
+    if (instruccion_buscada == instruccion){
+      std::cout << "encontre "<< i << '\n';
+      posicion = i;
+    }
   }
-  return pos_buscada;
+  return posicion;
+}
+
+Nodo::~Nodo(){
+
+}
+
+Nodo::Nodo(const std::string &instruccion){
+  this->instruccion = instruccion;
+  this->aristas = std::vector<Nodo*>();
+}
+
+std::string Nodo::obtener_instruccion() const{
+  return this->instruccion;
+}
+
+void Nodo::aniadir_vecino(Nodo* nodo){
+  this->aristas.push_back(nodo);
 }
