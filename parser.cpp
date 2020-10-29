@@ -80,14 +80,14 @@ void asociar_etiquetas(std::vector<std::string> instrucciones,Grafo& grafo, int 
   std::string aux(instrucciones[pos_etiqueta]);
   int pos = aux.find(":");
   std::string etiqueta = aux.substr(0,pos);
-  int pos_instruccion = aux.find_first_not_of(" ",pos + 1);
-  std::string instruccion = aux.substr(pos_instruccion, aux.size()-1);
+//  int pos_instruccion = aux.find_first_not_of(" ",pos + 1);
+  //std::string instruccion = aux.substr(pos_instruccion, aux.size()-1);
   int cantidad_de_instrucciones = instrucciones.size();
   for(int i = 0; i <cantidad_de_instrucciones; i++){
     int pos = instrucciones[i].find(etiqueta);
-    if(verifica_salto(instrucciones[i]) && (pos > -1)){
+    if(verifica_salto(instrucciones[i]) && (pos > -1) && i != pos_etiqueta){
       std::cout << "asocio "<< instrucciones[i]<< "con "<<etiqueta <<"\n";
-      grafo.aniadir_arista(instrucciones[i],instruccion);
+      grafo.aniadir_arista(instrucciones[i],instrucciones[pos_etiqueta]);
     }
   }
 }
@@ -110,7 +110,11 @@ Grafo Parser::crear_grafo(const std::vector<std::string>instrucciones) const{
   Grafo grafo = Grafo();
   int cantidad_instrucciones = instrucciones.size();
   for (int i = 0; i < cantidad_instrucciones; i++){
-    grafo.aniadir_nodo(instrucciones[i]);
+    if(verifica_etiqueta(instrucciones[i])){
+      grafo.aniadir_nodo(instrucciones[i],true);
+    }else{
+      grafo.aniadir_nodo(instrucciones[i],false);
+    }
   }
   for (int j = 0; j < cantidad_instrucciones; j++){
     asociar_segun_instruccion(grafo,instrucciones,j);
@@ -127,14 +131,14 @@ Grafo Parser::run() const{
   if(fs){
     std::string linea;
     while (std::getline(fs,linea,'\n')){
-      if(linea.size() != 0/*capaz mayor a uno*/){
-        //std::cout << linea << '\n';
-        //instruccion_actual = parsear_linea(linea);
+      if(linea.size() != 0){
         instrucciones.push_back(linea);
       }
     }
   fs.close();
 }
-  Grafo grafo(this->crear_grafo(instrucciones));
+  Grafo grafo = std::move(this->crear_grafo(instrucciones));
+
+
   return grafo;
 }
