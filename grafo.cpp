@@ -51,6 +51,11 @@ int Grafo::buscar_nodo(const std::string cadena) const{
   return posicion;
 }
 
+std::vector<Nodo> Grafo::obtener_nodos(){
+  return this->nodos;
+}
+
+
 Nodo::~Nodo(){
 
 }
@@ -73,9 +78,8 @@ bool Nodo::fue_visitado(){
 }
 
 void Nodo::visitar(){
-  this->visitado = true;
+  this->visitado = bool(true);
   std::cout << "visite" << this->obtener_instruccion() << '\n';
-
 }
 
 std::vector<Nodo*> Nodo::obtener_adyacentes(){
@@ -89,4 +93,5 @@ Nodo::Nodo(Nodo&& nodo){
 Nodo::Nodo(const Nodo& nodo){
   this->instruccion = nodo.instruccion;
   this->aristas = nodo.aristas;
+  this->visitado = nodo.visitado;
 }
