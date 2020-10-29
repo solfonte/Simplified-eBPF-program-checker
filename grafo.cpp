@@ -5,18 +5,18 @@ Grafo::Grafo(){
   nodos = std::vector<Nodo>();
 }
 
-Grafo::Grafo(const Grafo &grafo){
+Grafo::Grafo(const Grafo &&grafo){
   this->nodos = grafo.nodos;
 }
 
 Grafo::~Grafo(){
 }
 
-void Grafo::aniadir_arista(const std::string instruccion,const std::string instruccion_conectar){
-  //Nodo nodo(instruccion_conectar);
-  std::cout << instruccion << '\n';
-  std::cout << instruccion_conectar << '\n';
+int Grafo::cantidad_nodos() const{
+  return this->nodos.size();
+}
 
+void Grafo::aniadir_arista(const std::string instruccion,const std::string instruccion_conectar){
   int pos_nodo_agregar_arista = this->buscar_nodo(instruccion);
   int pos_nodo_apuntar = this->buscar_nodo(instruccion_conectar);
   std::cout << pos_nodo_agregar_arista << '\n';
@@ -41,7 +41,6 @@ int Grafo::buscar_nodo(const std::string cadena) const{
     std::string instruccion_buscada = this->nodos[i].obtener_instruccion();
 
     if (instruccion_buscada == cadena || (instruccion_buscada.find(cadena) > -1)){
-      std::cout << "encontre "<< i  <<  cadena << '\n';
       posicion = i;
     }
   }

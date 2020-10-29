@@ -13,4 +13,5 @@ int main(int argc, char** argv) {
   Parser parser = Parser(argv[2]);
   Grafo grafo = std::move(parser.run());
     return 0;
+
 }
