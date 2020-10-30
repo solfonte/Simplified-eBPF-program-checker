@@ -8,16 +8,17 @@
 class Nodo{
   private:
     Instruccion instruccion;
-    //std::string instruccion;
+    int orden;
     std::vector<Nodo*> aristas;
     bool visitado = false;
   public:
     std::string obtener_instruccion() const;
     void aniadir_vecino(Nodo* nodo);
-    Nodo(const Instruccion &instruccion);
+    Nodo(const Instruccion &instruccion,const int &orden);
     bool fue_visitado();
     void visitar();
-    std::vector<Nodo*>obtener_adyacentes();
+    std::vector<Nodo*>& obtener_adyacentes();
+    int orden_topologico() const;
     ~Nodo();
     Nodo(Nodo&& nodo);
     Nodo(const Nodo& nodo);
@@ -32,7 +33,7 @@ class Grafo{
     void aniadir_nodo(const std::string instruccion,bool es_etiqueta);
     int cantidad_nodos() const;
     Nodo& obtener_nodo_origen();
-    std::vector<Nodo> obtener_nodos();
+    std::vector<Nodo>& obtener_nodos();
   private:
     std::vector<Nodo> nodos;
     int buscar_nodo(std::string etiqueta) const;

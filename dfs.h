@@ -6,7 +6,7 @@
 class Dfs{
 
   public:
-    int realizar_recorrido(Grafo& grafo) const;
+    bool realizar_recorrido(Grafo& grafo) const;
     Dfs() = default;
 };
 

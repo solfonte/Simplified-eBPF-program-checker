@@ -5,42 +5,42 @@
 #include "grafo.h"
 #include "dfs.h"
 #include "detector.h"
-
-void mostrar_grafo(Grafo& grafo){
-  Nodo& nodo = grafo.obtener_nodo_origen();
-  std::vector<Nodo*> adyldh = nodo.obtener_adyacentes();
-  std::string cadenaa = nodo.obtener_instruccion();
-  std::cout << cadenaa<< "osea andaaa" << '\n';
-  std::vector<Nodo*> adyjne = adyldh[0]->obtener_adyacentes();
-  std::string jne = adyldh[0]->obtener_instruccion();
-  std::cout << jne<< "osea andaaa" << '\n';
-
-  std::string ret1 = adyjne[0]->obtener_instruccion();
-  std::cout << ret1<< "osea andaaa" << '\n';
-//  std::string ret0 = adyjne[1]->obtener_instruccion();
-//  std::cout << ret0<< "osea andaaa" << '\n';
-}
-
+#include "contenedor_de_datos.h"
+#define POSICION_ARCHIVOS 2
 
 int main(int argc, char** argv) {
   if(argc < 3){
     std::cout << " faltan argumentos " << '\n';
     return 0;
   }
-  Parser parser = Parser(argv[2]);
+  Contenedor_de_datos archivos = Contenedor_de_datos();
+  for(int i = POSICION_ARCHIVOS; i < argc; i++){
+    archivos.aniadir_dato(argv[i]);
+  }
+  Parser parser = Parser(archivos.entregar_dato());
   Grafo grafo = std::move(parser.run());
   Detector detector = Detector();
+  Contenedor_de_datos resultados = Contenedor_de_datos();
+
+  /**************************************/
   if(detector.detecto_ciclos(grafo)){
-    std::cout << "hubo ciclos"<< '\n';
-  }
-  if(grafo.obtener_nodo_origen().fue_visitado()){
-    std::cout << "si visitee"<< '\n';
+    std::string resultado = "archivo";
+    resultado += " FAIL: cycle detected\n";
+    resultados.aniadir_dato(resultado);
+  }else if(detector.detecto_instrucciones_sin_utilizar(grafo)){
+    std::string resultado = "archivo";
+    resultado += " FAIL: unused instructions detected\n";
+    resultados.aniadir_dato(resultado);
+  }else{
+    std::string resultado = "archivo";
+    resultado += " GOOD\n";
+    resultados.aniadir_dato(resultado);
 
   }
-//  mostrar_grafo(grafo);
-  if(detector.detecto_instrucciones_sin_utilizar(grafo)){
-    std::cout << "hubo instrucciones sin usar"<< '\n';
-  }
+  std::cout << resultados.entregar_dato()<< '\n';
+  /**************************************/
+
+
     return 0;
 
 }

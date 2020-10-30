@@ -17,7 +17,6 @@ bool Detector::detecto_instrucciones_sin_utilizar(Grafo& grafo){
   bool hay_inst_no_usadas = false;
   for (std::vector<Nodo>::iterator it = nodos.begin(); it != nodos.end(); ++it) {
        if(!(*it).fue_visitado()){
-         std::cout << "la instruccion es " << (*it).obtener_instruccion()<< '\n';
          hay_inst_no_usadas = true;
        }
    }
