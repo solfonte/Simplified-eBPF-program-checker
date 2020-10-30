@@ -19,15 +19,24 @@ Nodo& Grafo::obtener_nodo_origen(){
 int Grafo::cantidad_nodos() const{
   return this->nodos.size();
 }
-
+void Grafo::aniadir_arista(const int orden_nodo, const int orden_nodo_conectar){
+  Nodo& nodo_aniadir_arista = this->nodos[orden_nodo];
+  Nodo& nodo_apuntar = this->nodos[orden_nodo_conectar];
+  nodo_aniadir_arista.aniadir_vecino(&nodo_apuntar);
+  std::string cadena = nodo_aniadir_arista.obtener_instruccion();
+  std::string cadena1 = nodo_apuntar.obtener_instruccion();
+  std::cout << cadena << " -> " << cadena1 << "\n";
+}
+/*
 void Grafo::aniadir_arista(const std::string instruccion,const std::string instruccion_conectar){
   int pos_nodo_agregar_arista = this->buscar_nodo(instruccion);
   int pos_nodo_apuntar = this->buscar_nodo(instruccion_conectar);
   Nodo& nodo_aniadir_arista = this->nodos[pos_nodo_agregar_arista];
   Nodo& nodo_apuntar = this->nodos[pos_nodo_apuntar];
   nodo_aniadir_arista.aniadir_vecino(&nodo_apuntar);
+  std::cout << instruccion << " -> " << instruccion_conectar << "\n";
 }
-
+*/
 void Grafo::aniadir_nodo(const std::string instruccion,bool es_etiqueta){
   int orden_nodo = this->nodos.size();
   Nodo nodo(instruccion,orden_nodo);
@@ -40,8 +49,8 @@ int Grafo::buscar_nodo(const std::string cadena) const{
   int posicion = -1;
   for (int i = 0; i < cantidad_nodos; i++){
     std::string instruccion_buscada = this->nodos[i].obtener_instruccion();
-
-    if (instruccion_buscada == cadena || (instruccion_buscada.find(cadena) > -1)){
+    ssize_t pos = instruccion_buscada.find(cadena);
+    if (instruccion_buscada == cadena || pos > -1){
       posicion = i;
     }
   }

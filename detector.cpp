@@ -13,7 +13,7 @@ bool Detector::detecto_ciclos(Grafo& grafo){
   return false;
 }
 bool Detector::detecto_instrucciones_sin_utilizar(Grafo& grafo){
-  std::vector<Nodo> nodos = grafo.obtener_nodos();//se esta generando una copia del vector esta mal??
+  std::vector<Nodo> &nodos = grafo.obtener_nodos();//se esta generando una copia del vector esta mal??
   bool hay_inst_no_usadas = false;
   for (std::vector<Nodo>::iterator it = nodos.begin(); it != nodos.end(); ++it) {
        if(!(*it).fue_visitado()){
