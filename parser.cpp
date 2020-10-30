@@ -95,8 +95,6 @@ void asociar_etiquetas(std::vector<std::string> instrucciones,Grafo& grafo, int 
   for(int i = 0; i <cantidad_de_instrucciones; i++){
     if(verifica_salto(instrucciones[i]) && salta_a_etiqueta(instrucciones[i],etiqueta) && i != pos_etiqueta){
         grafo.aniadir_arista(i,pos_etiqueta);
-
-    //  grafo.aniadir_arista(instrucciones[i],instrucciones[pos_etiqueta]);
     }
   }
 }
@@ -107,10 +105,8 @@ void asociar_segun_instruccion(Grafo& grafo,std::vector<std::string> instruccion
 
   if (tipo_instruccion == COMUN && pos_instruccion < (cantidad_inst - 1)){
     grafo.aniadir_arista(pos_instruccion,pos_instruccion + 1);
-    //grafo.aniadir_arista(instrucciones[pos_instruccion],instrucciones[pos_instruccion + 1]);
   }else if (tipo_instruccion == SALTO_CON_UNA_ETIQUETA && pos_instruccion < (cantidad_inst - 1)){
     grafo.aniadir_arista(pos_instruccion,pos_instruccion + 1);
-    //grafo.aniadir_arista(instrucciones[pos_instruccion],instrucciones[pos_instruccion + 1]);
   }
   if(verifica_etiqueta(instrucciones[pos_instruccion])){
     asociar_etiquetas(instrucciones,grafo,pos_instruccion);

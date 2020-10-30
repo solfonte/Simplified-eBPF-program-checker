@@ -27,16 +27,7 @@ void Grafo::aniadir_arista(const int orden_nodo, const int orden_nodo_conectar){
   std::string cadena1 = nodo_apuntar.obtener_instruccion();
   std::cout << cadena << " -> " << cadena1 << "\n";
 }
-/*
-void Grafo::aniadir_arista(const std::string instruccion,const std::string instruccion_conectar){
-  int pos_nodo_agregar_arista = this->buscar_nodo(instruccion);
-  int pos_nodo_apuntar = this->buscar_nodo(instruccion_conectar);
-  Nodo& nodo_aniadir_arista = this->nodos[pos_nodo_agregar_arista];
-  Nodo& nodo_apuntar = this->nodos[pos_nodo_apuntar];
-  nodo_aniadir_arista.aniadir_vecino(&nodo_apuntar);
-  std::cout << instruccion << " -> " << instruccion_conectar << "\n";
-}
-*/
+
 void Grafo::aniadir_nodo(const std::string instruccion,bool es_etiqueta){
   int orden_nodo = this->nodos.size();
   Nodo nodo(instruccion,orden_nodo);
