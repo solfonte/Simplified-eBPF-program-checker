@@ -3,18 +3,17 @@
 
 #include <string>
 #include <vector>
-#include "instruccion.h"
 
 class Nodo{
   private:
-    Instruccion instruccion;
+    std::string instruccion;
     int orden;
     std::vector<Nodo*> aristas;
     bool visitado = false;
   public:
     std::string obtener_instruccion() const;
     void aniadir_vecino(Nodo* nodo);
-    Nodo(const Instruccion &instruccion,const int &orden);
+    Nodo(const std::string &instruccion,const int &orden);
     bool fue_visitado();
     void visitar();
     std::vector<Nodo*>& obtener_adyacentes();

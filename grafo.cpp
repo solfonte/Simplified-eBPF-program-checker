@@ -28,8 +28,7 @@ void Grafo::aniadir_arista(const std::string instruccion,const std::string instr
   nodo_aniadir_arista.aniadir_vecino(&nodo_apuntar);
 }
 
-void Grafo::aniadir_nodo(const std::string cadena,bool es_etiqueta){
-  Instruccion instruccion = Instruccion(cadena,es_etiqueta);
+void Grafo::aniadir_nodo(const std::string instruccion,bool es_etiqueta){
   int orden_nodo = this->nodos.size();
   Nodo nodo(instruccion,orden_nodo);
   this->nodos.push_back(nodo);
@@ -60,14 +59,14 @@ int Nodo::orden_topologico() const{
   return this->orden;
 }
 
-Nodo::Nodo(const Instruccion &instruccion,const int &orden){
+Nodo::Nodo(const std::string &instruccion,const int &orden){
   this->orden = orden;
-  this->instruccion = Instruccion(instruccion);//std::move(instruccion);
+  this->instruccion = std::move(instruccion);
   this->aristas = std::vector<Nodo*>();
 }
 
 std::string Nodo::obtener_instruccion() const{
-  return this->instruccion.obtener_cadena();
+  return this->instruccion;
 }
 
 void Nodo::aniadir_vecino(Nodo* nodo){

@@ -9,7 +9,6 @@ bool Dfs::realizar_recorrido(Grafo& grafo) const{
   Nodo& origen = grafo.obtener_nodo_origen();
   bool hay_ciclo = false;
   std::stack<Nodo*> pila = std::stack<Nodo*>();
-  //std::vector<int> ordenes_nodos = std::vector;
   origen.visitar();
   pila.push(&origen);
   while(!pila.empty()){
@@ -24,7 +23,6 @@ bool Dfs::realizar_recorrido(Grafo& grafo) const{
       }
       int j = vertice->orden_topologico();
       int k = adyacentes[i]->orden_topologico();
-      //std::cout << "comparo "<< j <<"con "<<k<< "\n";
       if(vertice->orden_topologico() > adyacentes[i]->orden_topologico()){
         hay_ciclo = true;
       }
