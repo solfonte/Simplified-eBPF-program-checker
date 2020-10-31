@@ -37,5 +37,11 @@ int main(int argc, char** argv) {
     i++;
     if (i == cantidad_de_hilos) i = 0;
   }
+
+  for(int i = 0; i < (argc - POSICION_ARCHIVOS); i++){
+    std::string temporal = resultados.entregar_dato();
+    std::cout << temporal<< '\n';
+  }
+
     return 0;
 }

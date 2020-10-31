@@ -12,6 +12,7 @@ Contenedor_de_datos::~Contenedor_de_datos(){
 void Contenedor_de_datos::aniadir_dato(const std::string dato){
     this->mutex->lock();
     this->datos.push_back(dato);
+    this->datos.sort();
     this->mutex->unlock();
 }
 
