@@ -10,6 +10,9 @@ void Thread::procesar_archivo(){
   }
   Parser parser = Parser(archivo_procesado);
   Grafo grafo = std::move(parser.run());
+  if(grafo.cantidad_nodos() == 0){
+    return;
+  }
   Detector detector = Detector();
   std::string resultado(archivo_procesado);
   if (detector.detecto_ciclos(grafo)){
