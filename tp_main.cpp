@@ -19,7 +19,7 @@ int main(int argc, char** argv) {
   std::mutex m;
   Contenedor_de_datos archivos = Contenedor_de_datos(&m);//verSi se estaCopiando
   Contenedor_de_datos resultados = Contenedor_de_datos(&m);
-  std::vector<Thread> threads; // no se inicializa?
+  std::vector<Thread> threads;
 
   /*encapsular en el constructor de archivos*/
   for (int i = POSICION_ARCHIVOS; i < argc; i++){
@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
     if (i == cantidad_de_hilos) i = 0;
   }
 
-  for(int i = 0; i < (argc - POSICION_ARCHIVOS); i++){
+  for (int i = 0; i < (argc - POSICION_ARCHIVOS); i++){//mejor con while not empty
     std::string temporal = resultados.entregar_dato();
     std::cout << temporal<< '\n';
   }

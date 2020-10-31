@@ -19,8 +19,6 @@ void Thread::procesar_archivo(){
     resultado += " GOOD";
     this->resultados->aniadir_dato(resultado);
   }
-  std::string temporal = this->resultados->entregar_dato();
-  std::cout << temporal<< '\n';
 }
 
 Thread::Thread(Contenedor_de_datos* archivos, Contenedor_de_datos* resultados){

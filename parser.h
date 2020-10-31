@@ -11,7 +11,7 @@
 #include "grafo.h"
 #include <string>
 #include <fstream>
-
+#include <vector>
 
 class Parser {
     private:
@@ -19,7 +19,7 @@ class Parser {
         void anidir_al_grafo(int instruccion_actual,int instruccion_anterior,
                               std::string linea,Grafo* grafo) const;
     public:
-      Parser(const std::string nombre_archivo);
+      explicit Parser(const std::string nombre_archivo);
       ~Parser();
     /*  Parser(const std::string nombre_archivo) :
           archivo(nombre_archivo) {}*/

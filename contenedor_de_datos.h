@@ -11,7 +11,7 @@ class Contenedor_de_datos{
     std::mutex* mutex;
   public:
     bool empty() const;
-    Contenedor_de_datos(std::mutex* m);
+    explicit Contenedor_de_datos(std::mutex* m);
     ~Contenedor_de_datos();
     void aniadir_dato(const std::string dato);//cappza devolver int
     std::string entregar_dato();
