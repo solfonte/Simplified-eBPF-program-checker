@@ -1,5 +1,6 @@
 #include "grafo.h"
 #include <iostream>
+#include <utility>
 
 Grafo::Grafo(){
   nodos = std::vector<Nodo>();

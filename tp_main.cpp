@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
   }
 
   int i = 0;
-  while(!archivos.empty()){
+  while (!archivos.empty()){
     threads[i].procesar_archivo();
     i++;
     if (i == cantidad_de_hilos) i = 0;

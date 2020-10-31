@@ -25,7 +25,6 @@ class Parser {
           archivo(nombre_archivo) {}*/
       Grafo run() const;
       Grafo crear_grafo(const std::vector<std::string>instrucciones) const;
-
 };
 
 #endif

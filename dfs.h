@@ -4,7 +4,6 @@
 #include "grafo.h"
 
 class Dfs{
-
   public:
     bool realizar_recorrido(Grafo& grafo) const;
     Dfs() = default;
