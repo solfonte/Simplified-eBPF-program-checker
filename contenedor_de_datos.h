@@ -3,12 +3,15 @@
 
 #include <list>
 #include <string>
+#include <mutex>
 
 class Contenedor_de_datos{
   private:
     std::list<std::string> datos;
+    std::mutex* mutex;
   public:
-    Contenedor_de_datos();
+    bool empty() const;
+    Contenedor_de_datos(std::mutex* m);
     ~Contenedor_de_datos();
     void aniadir_dato(const std::string dato);//cappza devolver int
     std::string entregar_dato();
