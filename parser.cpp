@@ -27,7 +27,6 @@ static bool verifica_return(std::string linea){
 }
 
 int contar_comas(const std::string& linea){
-  //int tamanio_linea = linea.size() - 1;
   int comas = 0;
   std::string aux(linea);
   int pos = 0;
@@ -126,11 +125,7 @@ Grafo Parser::crear_grafo(const std::vector<std::string>instrucciones) const{
   Grafo grafo = Grafo();
   int cantidad_instrucciones = instrucciones.size();
   for (int i = 0; i < cantidad_instrucciones; i++){
-    if (verifica_etiqueta(instrucciones[i])){
-      grafo.aniadir_nodo(instrucciones[i],true);
-    }else{
-      grafo.aniadir_nodo(instrucciones[i],false);
-    }
+    grafo.aniadir_nodo(instrucciones[i]);
   }
   for (int j = 0; j < cantidad_instrucciones; j++){
     asociar_segun_instruccion(grafo,instrucciones,j);
@@ -142,7 +137,6 @@ Grafo Parser::crear_grafo(const std::vector<std::string>instrucciones) const{
 Grafo Parser::run() const{
   std::ifstream fs;
   fs.open(this->archivo);
-  //if(!fs) error;
   std::vector<std::string> instrucciones;
   if (fs){
     std::string linea;

@@ -33,8 +33,11 @@ Thread::Thread(Contenedor_de_datos* archivos, Contenedor_de_datos* resultados){
 }
 
 Thread::Thread(Thread&& thread){
+  this->thread = std::move(thread.thread);
   this->archivos = thread.archivos;
   this->resultados = thread.resultados;
+  thread.archivos = 0;
+  thread.resultados = 0;
 }
 
 
