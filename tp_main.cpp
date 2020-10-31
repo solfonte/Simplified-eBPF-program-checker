@@ -16,6 +16,11 @@ int main(int argc, char** argv) {
     return 0;
   }
   int cantidad_de_hilos = atoi(argv[POSICION_CANT_HILOS]);
+  if (cantidad_de_hilos <= 0){
+    std::cout << " La cantidad de hilos debe ser uno o mas " << '\n';
+
+    return 0;
+  }
   std::mutex m;
   Contenedor_de_datos archivos = Contenedor_de_datos(&m);//verSi se estaCopiando
   Contenedor_de_datos resultados = Contenedor_de_datos(&m);
