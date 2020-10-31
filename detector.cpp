@@ -2,8 +2,6 @@
 #include "dfs.h"
 #include <iostream>
 
-
-
 bool Detector::detecto_ciclos(Grafo& grafo){
   Dfs recorrido = Dfs();
   int ciclos = recorrido.realizar_recorrido(grafo);
@@ -13,9 +11,11 @@ bool Detector::detecto_ciclos(Grafo& grafo){
   return false;
 }
 bool Detector::detecto_instrucciones_sin_utilizar(Grafo& grafo){
-  std::vector<Nodo> &nodos = grafo.obtener_nodos();//se esta generando una copia del vector esta mal??
+  std::vector<Nodo> &nodos = grafo.obtener_nodos();//se estaGenerando una
+  //copia del vector esta mal??
   bool hay_inst_no_usadas = false;
-  for (std::vector<Nodo>::iterator it = nodos.begin(); it != nodos.end(); ++it) {
+  for (std::vector<Nodo>::iterator it = nodos.begin(); it
+      != nodos.end(); ++it) {
        if(!(*it).fue_visitado()){
          hay_inst_no_usadas = true;
        }

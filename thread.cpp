@@ -33,10 +33,8 @@ Thread::Thread(Contenedor_de_datos* archivos, Contenedor_de_datos* resultados){
 Thread::Thread(Thread&& thread){
   this->archivos = thread.archivos;
   this->resultados = thread.resultados;
-
 }
 
 
 Thread::~Thread(){
-
 }

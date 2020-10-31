@@ -19,13 +19,14 @@ Nodo& Grafo::obtener_nodo_origen(){
 int Grafo::cantidad_nodos() const{
   return this->nodos.size();
 }
-void Grafo::aniadir_arista(const int orden_nodo, const int orden_nodo_conectar){
+void Grafo::aniadir_arista(const int orden_nodo,
+                          const int orden_nodo_conectar){
   Nodo& nodo_aniadir_arista = this->nodos[orden_nodo];
   Nodo& nodo_apuntar = this->nodos[orden_nodo_conectar];
   nodo_aniadir_arista.aniadir_vecino(&nodo_apuntar);
-  std::string cadena = nodo_aniadir_arista.obtener_instruccion();
-  std::string cadena1 = nodo_apuntar.obtener_instruccion();
-  std::cout << cadena << " -> " << cadena1 << "\n";
+  //std::string cadena = nodo_aniadir_arista.obtener_instruccion();
+  //std::string cadena1 = nodo_apuntar.obtener_instruccion();
+  //std::cout << cadena << " -> " << cadena1 << "\n";
 }
 
 void Grafo::aniadir_nodo(const std::string instruccion,bool es_etiqueta){
