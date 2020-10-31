@@ -5,6 +5,9 @@
 
 void Thread::procesar_archivo(){
   std::string archivo_procesado = this->archivos->entregar_dato();
+  if(archivo_procesado.size() == 0){
+    return;
+  }
   Parser parser = Parser(archivo_procesado);
   Grafo grafo = std::move(parser.run());
   Detector detector = Detector();
