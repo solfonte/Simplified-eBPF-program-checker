@@ -3,7 +3,7 @@
 #include <stack>
 
 bool Grafo::realizar_recorrido_dfs(){
-  Nodo& origen = this->obtener_nodo_origen();
+  Nodo& origen = this->nodos[0];
   bool hay_ciclo = false;
   std::stack<Nodo*> pila = std::stack<Nodo*>();
   origen.visitar();
@@ -25,7 +25,6 @@ bool Grafo::realizar_recorrido_dfs(){
     }
   }
   return hay_ciclo;
-
 }
 
 Grafo::Grafo(){
@@ -39,13 +38,10 @@ Grafo::Grafo(Grafo &&grafo){
 Grafo::~Grafo(){
 }
 
-Nodo& Grafo::obtener_nodo_origen(){
-  return this->nodos[0];
-}
-
 int Grafo::cantidad_nodos() const{
   return this->nodos.size();
 }
+
 void Grafo::aniadir_arista(const int orden_nodo,
                           const int orden_nodo_conectar){
   Nodo& nodo_aniadir_arista = this->nodos[orden_nodo];
@@ -61,7 +57,6 @@ void Grafo::aniadir_nodo(const std::string instruccion){
 
 int Grafo::buscar_nodo(const std::string cadena) const{
   int cantidad_nodos = this->nodos.size();
-
   int posicion = -1;
   for (int i = 0; i < cantidad_nodos; i++){
     std::string instruccion_buscada = this->nodos[i].obtener_instruccion();
@@ -103,17 +98,17 @@ bool Nodo::fue_visitado(){
 }
 
 void Nodo::visitar(){
-  this->visitado = bool(true);
+  this->visitado = true;
 }
 
 std::vector<Nodo*>& Nodo::obtener_adyacentes(){
   return this->aristas;
 }
 Nodo::Nodo(Nodo&& nodo){
-  this->orden = nodo.orden;
+  this->orden = std::move(nodo.orden);
   this->instruccion = std::move(nodo.instruccion);
   this->aristas = std::move(nodo.aristas);
-  this->visitado = nodo.visitado;
+  this->visitado = std::move(nodo.visitado);
 }
 
 Nodo::Nodo(const Nodo& nodo){

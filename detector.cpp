@@ -1,10 +1,8 @@
 #include "detector.h"
-#include "dfs.h"
 #include <iostream>
 #include <vector>
 
 bool Detector::detecto_ciclos(Grafo& grafo){
-//  Dfs recorrido = Dfs();
   int ciclos = grafo.realizar_recorrido_dfs();
   if (ciclos > 0){
     return true;
@@ -12,8 +10,7 @@ bool Detector::detecto_ciclos(Grafo& grafo){
   return false;
 }
 bool Detector::detecto_instrucciones_sin_utilizar(Grafo& grafo){
-  std::vector<Nodo> &nodos = grafo.obtener_nodos();//se estaGenerando una
-  //copia del vector esta mal??
+  std::vector<Nodo> &nodos = grafo.obtener_nodos();
   bool hay_inst_no_usadas = false;
   for (std::vector<Nodo>::iterator it = nodos.begin(); it
       != nodos.end(); ++it) {
