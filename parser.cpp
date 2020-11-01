@@ -121,7 +121,8 @@ void asociar_segun_instruccion(Grafo& grafo,
   }
 }
 
-void Parser::crear_grafo(Grafo& grafo,const std::vector<std::string>instrucciones) const{
+void Parser::crear_grafo(Grafo& grafo,
+                        const std::vector<std::string>instrucciones) const{
   //Grafo grafo = Grafo();
   int cantidad_instrucciones = instrucciones.size();
   for (int i = 0; i < cantidad_instrucciones; i++){
