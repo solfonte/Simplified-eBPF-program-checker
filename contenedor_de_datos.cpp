@@ -19,7 +19,7 @@ void Contenedor_de_datos::aniadir_dato(const std::string dato){
 std::string Contenedor_de_datos::entregar_dato(){
   this->mutex->lock();
   std::string dato = "";
-  if(!this->datos.empty()){
+  if (!this->datos.empty()){
     dato = std::move(this->datos.front());
     this->datos.pop_front();
   }
