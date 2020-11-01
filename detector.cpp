@@ -4,8 +4,8 @@
 #include <vector>
 
 bool Detector::detecto_ciclos(Grafo& grafo){
-  Dfs recorrido = Dfs();
-  int ciclos = recorrido.realizar_recorrido(grafo);
+//  Dfs recorrido = Dfs();
+  int ciclos = grafo.realizar_recorrido_dfs();
   if (ciclos > 0){
     return true;
   }

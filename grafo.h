@@ -25,6 +25,7 @@ class Nodo{
 
 class Grafo{
   public:
+    bool realizar_recorrido_dfs();
     Grafo();
     Grafo(Grafo &&grafo);
     ~Grafo();
