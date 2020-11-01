@@ -21,10 +21,8 @@ class Parser {
     public:
       explicit Parser(const std::string nombre_archivo);
       ~Parser();
-    /*  Parser(const std::string nombre_archivo) :
-          archivo(nombre_archivo) {}*/
-      Grafo run() const;
-      Grafo crear_grafo(const std::vector<std::string>instrucciones) const;
+      bool run(Grafo& grafo) const;
+      void crear_grafo(Grafo& grafo,const std::vector<std::string>instrucciones) const;
 };
 
 #endif

@@ -121,8 +121,8 @@ void asociar_segun_instruccion(Grafo& grafo,
   }
 }
 
-Grafo Parser::crear_grafo(const std::vector<std::string>instrucciones) const{
-  Grafo grafo = Grafo();
+void Parser::crear_grafo(Grafo& grafo,const std::vector<std::string>instrucciones) const{
+  //Grafo grafo = Grafo();
   int cantidad_instrucciones = instrucciones.size();
   for (int i = 0; i < cantidad_instrucciones; i++){
     grafo.aniadir_nodo(instrucciones[i]);
@@ -130,15 +130,15 @@ Grafo Parser::crear_grafo(const std::vector<std::string>instrucciones) const{
   for (int j = 0; j < cantidad_instrucciones; j++){
     asociar_segun_instruccion(grafo,instrucciones,j);
   }
-
-  return grafo;
 }
 
-Grafo Parser::run() const{
+bool Parser::run(Grafo& grafo) const{
   std::ifstream fs;
   fs.open(this->archivo);
+  bool pude_abrir_archivo = 0;
   std::vector<std::string> instrucciones;
   if (fs){
+    pude_abrir_archivo = true;
     std::string linea;
     while (std::getline(fs,linea,'\n')){
       if (linea.size() != 0){
@@ -147,6 +147,6 @@ Grafo Parser::run() const{
     }
   fs.close();
 }
-  Grafo grafo = std::move(this->crear_grafo(instrucciones));
-  return grafo;
+  this->crear_grafo(grafo,instrucciones);
+  return pude_abrir_archivo;
 }

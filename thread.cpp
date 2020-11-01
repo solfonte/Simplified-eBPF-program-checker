@@ -9,8 +9,9 @@ void Thread::procesar_archivo(){
     return;
   }
   Parser parser = Parser(archivo_procesado);
-  Grafo grafo = std::move(parser.run());
-  if (grafo.cantidad_nodos() == 0){
+  Grafo grafo = Grafo();
+  bool pude_inicializar = parser.run(grafo);
+  if (grafo.cantidad_nodos() == 0 || !pude_inicializar){
     return;
   }
   Detector detector = Detector();
