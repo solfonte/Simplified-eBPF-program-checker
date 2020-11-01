@@ -17,7 +17,8 @@ bool Dfs::realizar_recorrido(Grafo& grafo) const{
     std::vector<Nodo*> &adyacentes = vertice->obtener_adyacentes();
     int cantidad_ady = adyacentes.size();
     for (int i = 0; i < cantidad_ady; i++) {
-      if ((vertice->orden_topologico() > adyacentes[i]->orden_topologico()) && adyacentes[i]->fue_visitado()){
+      if ((vertice->orden_topologico() > adyacentes[i]->orden_topologico())
+          && adyacentes[i]->fue_visitado()){
         hay_ciclo = true;
       }
       if (!adyacentes[i]->fue_visitado()){
