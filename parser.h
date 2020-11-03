@@ -16,8 +16,6 @@
 class Parser {
     private:
         std::string archivo;
-      //  void anidir_al_grafo(int instruccion_actual,int instruccion_anterior,
-      //                        std::string linea,Grafo* grafo) const;
     public:
       explicit Parser(const std::string nombre_archivo);
       ~Parser();
