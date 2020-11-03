@@ -16,4 +16,4 @@ Tanto para la deteccion de ciclos y la deteccion de instrucciones sin utilizar s
 Se implemento una clase contenedora de datos, la cual se instancia para guardar los archivos y para guardar los resultados, debido a que no habia una diferencia significativa en cuanto al comportamiento del objeto que contiene los archivos y el que contiene los resultados, y se decidio generalizar el comportamiento para poder crear la clase que sirve tanto para un objeto como para otro.  
 
 **Diagrama de clases**  
-![Alt Text](clasesTp2.png)
+![Alt Text](clasestp2.png)
