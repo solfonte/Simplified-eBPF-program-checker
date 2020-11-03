@@ -14,6 +14,8 @@
 #include <vector>
 
 class Parser {
+    private:
+        std::string archivo;
     public:
       explicit Parser(const std::string nombre_archivo);
       ~Parser();
