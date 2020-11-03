@@ -11,14 +11,5 @@ bool Detector::detecto_ciclos(Grafo& grafo){
 }
 
 bool Detector::detecto_instrucciones_sin_utilizar(Grafo& grafo){
-/*  std::vector<Nodo> &nodos = grafo.obtener_nodos();
-  bool hay_inst_no_usadas = false;
-  for (std::vector<Nodo>::iterator it = nodos.begin(); it
-      != nodos.end(); ++it) {
-       if (!(*it).fue_visitado()){
-         hay_inst_no_usadas = true;
-       }
-   }
-   return hay_inst_no_usadas;*/
    return grafo.hay_nodos_sin_visitar();
 }

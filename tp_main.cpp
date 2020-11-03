@@ -41,15 +41,9 @@ int main(int argc, char** argv) {
     if (i == cantidad_de_hilos) i = 0;
   }
 
-  while(!resultados.empty()){
+  while (!resultados.empty()){
     std::string temporal = resultados.entregar_dato();
     std::cout << temporal<< '\n';
-  }/*
-  for (int i = 0; i < (argc - POSICION_ARCHIVOS); i++){
-    //mejor con while not empty
-    std::string temporal = resultados.entregar_dato();
-    std::cout << temporal<< '\n';
-  }*/
-
+  }
     return 0;
 }

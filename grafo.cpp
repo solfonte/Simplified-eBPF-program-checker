@@ -67,23 +67,6 @@ void Grafo::aniadir_nodo(const std::string instruccion){
   this->nodos.push_back(nodo);
 }
 
-int Grafo::buscar_nodo(const std::string cadena) const{
-  int cantidad_nodos = this->nodos.size();
-  int posicion = -1;
-  for (int i = 0; i < cantidad_nodos; i++){
-    std::string instruccion_buscada = this->nodos[i].obtener_instruccion();
-    ssize_t pos = instruccion_buscada.find(cadena);
-    if (instruccion_buscada == cadena || pos > -1){
-      posicion = i;
-    }
-  }
-  return posicion;
-}
-
-std::vector<Nodo>& Grafo::obtener_nodos(){
-  return this->nodos;
-}
-
 Nodo::~Nodo(){
 }
 
@@ -116,6 +99,7 @@ void Nodo::visitar(){
 std::vector<Nodo*>& Nodo::obtener_adyacentes(){
   return this->aristas;
 }
+
 Nodo::Nodo(Nodo&& nodo){
   this->orden = std::move(nodo.orden);
   this->instruccion = std::move(nodo.instruccion);

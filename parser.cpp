@@ -120,8 +120,8 @@ void asociar_segun_instruccion(Grafo& grafo,
   }
 }
 
-void Parser::crear_grafo(Grafo& grafo,
-                        const std::vector<std::string>instrucciones) const{
+void inicializar_grafo(Grafo& grafo,
+                        const std::vector<std::string>instrucciones){
   int cantidad_instrucciones = instrucciones.size();
   for (int i = 0; i < cantidad_instrucciones; i++){
     grafo.aniadir_nodo(instrucciones[i]);
@@ -146,6 +146,6 @@ bool Parser::run(Grafo& grafo) const{
     }
   fs.close();
 }
-  this->crear_grafo(grafo,instrucciones);
+  inicializar_grafo(grafo,instrucciones);
   return pude_abrir_archivo;
 }

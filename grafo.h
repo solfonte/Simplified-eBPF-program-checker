@@ -33,10 +33,8 @@ class Grafo{
     void aniadir_nodo(const std::string instruccion);
     int cantidad_nodos() const;
     Nodo& obtener_nodo_origen();
-    std::vector<Nodo>& obtener_nodos();
     bool hay_nodos_sin_visitar();
   private:
     std::vector<Nodo> nodos;
-    int buscar_nodo(std::string etiqueta) const;
 };
 #endif
