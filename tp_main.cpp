@@ -16,23 +16,22 @@ int main(int argc, char** argv) {
   }
   int cantidad_de_hilos = atoi(argv[POSICION_CANT_HILOS]);
   if (cantidad_de_hilos <= 0){
-    std::cout << " La cantidad de hilos debe ser uno o mas " << '\n';
+    std::cout << " La cantidad de hilos debe ser mayor o igual a uno\n";
 
     return 0;
   }
   std::mutex m;
-  Contenedor_de_datos archivos = Contenedor_de_datos(&m);//verSi se estaCopiando
+  Contenedor_de_datos archivos = Contenedor_de_datos(&m);
   Contenedor_de_datos resultados = Contenedor_de_datos(&m);
   std::vector<Thread> threads;
 
-  /*encapsular en el constructor de archivos*/
   for (int i = POSICION_ARCHIVOS; i < argc; i++){
     archivos.aniadir_dato(argv[i]);
   }
 
   for (int i = 0; i < cantidad_de_hilos; i++){
     Thread thread = Thread(&archivos,&resultados);
-    threads.push_back(std::move(thread));//capazLe tengo que mandar los punteros
+    threads.push_back(std::move(thread));
   }
 
   int i = 0;
@@ -42,11 +41,15 @@ int main(int argc, char** argv) {
     if (i == cantidad_de_hilos) i = 0;
   }
 
+  while(!resultados.empty()){
+    std::string temporal = resultados.entregar_dato();
+    std::cout << temporal<< '\n';
+  }/*
   for (int i = 0; i < (argc - POSICION_ARCHIVOS); i++){
     //mejor con while not empty
     std::string temporal = resultados.entregar_dato();
     std::cout << temporal<< '\n';
-  }
+  }*/
 
     return 0;
 }

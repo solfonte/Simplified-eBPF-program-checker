@@ -42,6 +42,18 @@ int Grafo::cantidad_nodos() const{
   return this->nodos.size();
 }
 
+bool Grafo::hay_nodos_sin_visitar(){
+  std::vector<Nodo> &nodos = this->nodos;
+  bool hay_inst_no_usadas = false;
+    for (std::vector<Nodo>::iterator it = nodos.begin(); it
+        != nodos.end(); ++it) {
+         if (!(*it).fue_visitado()){
+           hay_inst_no_usadas = true;
+         }
+     }
+     return hay_inst_no_usadas;
+}
+
 void Grafo::aniadir_arista(const int orden_nodo,
                           const int orden_nodo_conectar){
   Nodo& nodo_aniadir_arista = this->nodos[orden_nodo];

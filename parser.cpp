@@ -1,7 +1,6 @@
 #include "parser.h"
 #include <iostream>
 #include <utility>
-//cambiar los static a privados
 
 Parser::Parser(const std::string nombre_archivo){
   this->archivo = nombre_archivo;
@@ -10,7 +9,7 @@ Parser::Parser(const std::string nombre_archivo){
 Parser::~Parser(){
 }
 
-static bool verifica_etiqueta(std::string linea){
+bool verifica_etiqueta(std::string linea){
   ssize_t pos_dos_puntos(linea.find(":"));
   if (pos_dos_puntos > -1){
     return true;
@@ -18,7 +17,7 @@ static bool verifica_etiqueta(std::string linea){
   return false;
 }
 
-static bool verifica_return(std::string linea){
+bool verifica_return(std::string linea){
   ssize_t pos_return(linea.find("ret"));
   if (pos_return > -1){
     return true;
@@ -38,12 +37,12 @@ int contar_comas(const std::string& linea){
   return comas;
 }
 
-static int verifica_salto(std::string linea){
+int verifica_salto(std::string linea){
   std::vector<std::string> saltos = {"jmp","ja","jeq","jneq","jne",
                                       "jlt","jgt","jge","jset"};
   bool hay_salto = false;
   int cantidad_comas = 0, retorno = 0;
-  for (int i = 0; i < 9; i++){//capaz cambiar a while
+  for (int i = 0; i < 9; i++){
     ssize_t pos_salto(linea.find(saltos[i]));
     if (pos_salto > -1){
       hay_salto = true;
@@ -123,7 +122,6 @@ void asociar_segun_instruccion(Grafo& grafo,
 
 void Parser::crear_grafo(Grafo& grafo,
                         const std::vector<std::string>instrucciones) const{
-  //Grafo grafo = Grafo();
   int cantidad_instrucciones = instrucciones.size();
   for (int i = 0; i < cantidad_instrucciones; i++){
     grafo.aniadir_nodo(instrucciones[i]);
