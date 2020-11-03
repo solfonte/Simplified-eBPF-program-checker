@@ -14,14 +14,10 @@
 #include <vector>
 
 class Parser {
-    private:
-        std::string archivo;
     public:
       explicit Parser(const std::string nombre_archivo);
       ~Parser();
       bool run(Grafo& grafo) const;
-      void crear_grafo(Grafo& grafo,
-                        const std::vector<std::string>instrucciones) const;
 };
 
 #endif
