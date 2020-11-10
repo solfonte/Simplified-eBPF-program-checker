@@ -1,6 +1,12 @@
 #include "contenedor_de_datos.h"
 #include <utility>
 
+Contenedor_de_datos::Contenedor_de_datos(char** datos,int cantidad_datos){
+  for (int i = 0; i < cantidad_datos; i++){
+    this->aniadir_dato(datos[i]);
+  }
+}
+
 Contenedor_de_datos::Contenedor_de_datos(){
   this->datos = std::list<std::string>();
 }
