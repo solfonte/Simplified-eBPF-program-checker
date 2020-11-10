@@ -23,11 +23,7 @@ int main(int argc, char** argv) {
   Contenedor_de_datos archivos(&(argv[POSICION_ARCHIVOS]),argc - POSICION_ARCHIVOS);
   Contenedor_de_datos resultados;
   std::vector<Thread> threads;
-/*
-  for (int i = POSICION_ARCHIVOS; i < argc; i++){
-    archivos.aniadir_dato(argv[i]);
-  }
-*/
+
   for (int i = 0; i < cantidad_de_hilos; i++){
     Thread thread = Thread(&archivos,&resultados);
     threads.push_back(std::move(thread));
@@ -40,9 +36,6 @@ int main(int argc, char** argv) {
     if (i == cantidad_de_hilos) i = 0;
   }
 
-  while (!resultados.empty()){
-    std::string temporal = resultados.entregar_dato();
-    std::cout << temporal<< '\n';
-  }
+  resultados.imprimir_datos();
     return 0;
 }

@@ -16,6 +16,7 @@ class Contenedor_de_datos{
     ~Contenedor_de_datos();
     void aniadir_dato(const std::string dato);
     std::string entregar_dato();
+    void imprimir_datos();
 };
 
 #endif

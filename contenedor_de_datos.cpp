@@ -1,5 +1,6 @@
 #include "contenedor_de_datos.h"
 #include <utility>
+#include <iostream>
 
 Contenedor_de_datos::Contenedor_de_datos(char** datos,int cantidad_datos){
   for (int i = 0; i < cantidad_datos; i++){
@@ -34,4 +35,12 @@ std::string Contenedor_de_datos::entregar_dato(){
 
 bool Contenedor_de_datos::empty() const{
   return this->datos.empty();
+}
+
+void Contenedor_de_datos::imprimir_datos(){
+  //capaz con lock
+  while (!this->datos.empty()){
+    std::string temporal = this->entregar_dato();//sacar esta funcion
+    std::cout << temporal<< '\n';
+  }
 }
