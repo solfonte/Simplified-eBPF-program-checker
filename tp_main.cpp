@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     std::cout << " faltan argumentos " << '\n';
     return 0;
   }
-  int cantidad_de_hilos = atoi(argv[POSICION_CANT_HILOS]);
+  int cantidad_de_hilos = std::stoi(argv[POSICION_CANT_HILOS]);
   if (cantidad_de_hilos <= 0){
     std::cout << " La cantidad de hilos debe ser mayor o igual a uno\n";
 
