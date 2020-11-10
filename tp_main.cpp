@@ -20,9 +20,8 @@ int main(int argc, char** argv) {
 
     return 0;
   }
-  std::mutex m;
-  Contenedor_de_datos archivos = Contenedor_de_datos(&m);
-  Contenedor_de_datos resultados = Contenedor_de_datos(&m);
+  Contenedor_de_datos archivos;
+  Contenedor_de_datos resultados;
   std::vector<Thread> threads;
 
   for (int i = POSICION_ARCHIVOS; i < argc; i++){

@@ -1,8 +1,7 @@
 #include "contenedor_de_datos.h"
 #include <utility>
 
-Contenedor_de_datos::Contenedor_de_datos(std::mutex* m){
-  this->mutex = m;
+Contenedor_de_datos::Contenedor_de_datos(){
   this->datos = std::list<std::string>();
 }
 
@@ -10,20 +9,20 @@ Contenedor_de_datos::~Contenedor_de_datos(){
 }
 
 void Contenedor_de_datos::aniadir_dato(const std::string dato){
-    this->mutex->lock();
+    this->mutex.lock();
     this->datos.push_back(dato);
     this->datos.sort();
-    this->mutex->unlock();
+    this->mutex.unlock();
 }
 
 std::string Contenedor_de_datos::entregar_dato(){
-  this->mutex->lock();
+  this->mutex.lock();
   std::string dato = "";
   if (!this->datos.empty()){
     dato = std::move(this->datos.front());
     this->datos.pop_front();
   }
-  this->mutex->unlock();
+  this->mutex.unlock();
   return dato;
 }
 

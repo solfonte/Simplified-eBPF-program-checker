@@ -8,10 +8,10 @@
 class Contenedor_de_datos{
   private:
     std::list<std::string> datos;
-    std::mutex* mutex;
+    std::mutex mutex;
   public:
     bool empty() const;
-    explicit Contenedor_de_datos(std::mutex* m);
+    Contenedor_de_datos();
     ~Contenedor_de_datos();
     void aniadir_dato(const std::string dato);
     std::string entregar_dato();
