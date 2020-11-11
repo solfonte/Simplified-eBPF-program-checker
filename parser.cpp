@@ -9,7 +9,7 @@ Parser::Parser(const std::string& nombre_archivo){
 Parser::~Parser(){
 }
 
-bool verifica_etiqueta(const std::string& linea){
+static bool verifica_etiqueta(const std::string& linea){
   ssize_t pos_dos_puntos(linea.find(":"));
   if (pos_dos_puntos > -1){
     return true;
@@ -17,7 +17,7 @@ bool verifica_etiqueta(const std::string& linea){
   return false;
 }
 
-bool verifica_return(const std::string& linea){
+static bool verifica_return(const std::string& linea){
   ssize_t pos_return(linea.find("ret"));
   if (pos_return > -1){
     return true;
@@ -25,7 +25,7 @@ bool verifica_return(const std::string& linea){
   return false;
 }
 
-int contar_comas(const std::string& linea){
+static int contar_comas(const std::string& linea){
   int comas = 0;
   std::string aux(linea);
   int pos = 0;
@@ -37,7 +37,7 @@ int contar_comas(const std::string& linea){
   return comas;
 }
 
-int verifica_salto(const std::string& linea){
+static int verifica_salto(const std::string& linea){
   std::vector<std::string> saltos = {"jmp","ja","jeq","jneq","jne",
                                       "jlt","jgt","jge","jset"};
   bool hay_salto = false;
@@ -64,7 +64,7 @@ int verifica_salto(const std::string& linea){
   return retorno;
 }
 
-int parsear_linea(const std::string& linea){
+static int parsear_linea(const std::string& linea){
   int tipo_salto = verifica_salto(linea);
     if (verifica_return(linea)){
       return RETURN;
@@ -77,7 +77,7 @@ int parsear_linea(const std::string& linea){
     }
 }
 
-bool salta_a_etiqueta(std::string& instruccion,std::string& etiqueta){
+static bool salta_a_etiqueta(std::string& instruccion,std::string& etiqueta){
   int pos = instruccion.find(etiqueta);
   if (pos == -1){
     return false;
@@ -89,7 +89,7 @@ bool salta_a_etiqueta(std::string& instruccion,std::string& etiqueta){
   return (etiqueta == posible_etiqueta1 || pos2 > -1);
 }
 
-void asociar_etiquetas(std::vector<std::string> instrucciones,
+static void asociar_etiquetas(std::vector<std::string> instrucciones,
                       Grafo& grafo, int pos_etiqueta){
   std::string aux(instrucciones[pos_etiqueta]);
   int pos = aux.find(":");
@@ -103,7 +103,7 @@ void asociar_etiquetas(std::vector<std::string> instrucciones,
   }
 }
 
-void asociar_segun_instruccion(Grafo& grafo,
+static void asociar_segun_instruccion(Grafo& grafo,
                                 std::vector<std::string> instrucciones,
                                 int pos_instruccion){
   int tipo_instruccion = parsear_linea(instrucciones[pos_instruccion]);
@@ -120,7 +120,7 @@ void asociar_segun_instruccion(Grafo& grafo,
   }
 }
 
-void inicializar_grafo(Grafo& grafo,
+static void inicializar_grafo(Grafo& grafo,
                         const std::vector<std::string>instrucciones){
   int cantidad_instrucciones = instrucciones.size();
   for (int i = 0; i < cantidad_instrucciones; i++){
