@@ -22,7 +22,7 @@ void Contenedor_de_datos::aniadir_dato(const std::string dato){
     this->mutex.unlock();
 }
 
-std::string Contenedor_de_datos::entregar_dato(){
+std::string Contenedor_de_datos::entregar_dato_si_no_esta_vacio(){
   this->mutex.lock();
   std::string dato = "";
   if (!this->datos.empty()){
@@ -32,7 +32,7 @@ std::string Contenedor_de_datos::entregar_dato(){
   this->mutex.unlock();
   return dato;
 }
-
+//sacar esta funcion
 bool Contenedor_de_datos::empty() const{
   return this->datos.empty();
 }
@@ -40,7 +40,7 @@ bool Contenedor_de_datos::empty() const{
 void Contenedor_de_datos::imprimir_datos(){
   //capaz con lock
   while (!this->datos.empty()){
-    std::string temporal = this->entregar_dato();//sacar esta funcion
+    std::string temporal = this->entregar_dato_si_no_esta_vacio();//sacar esta funcion
     std::cout << temporal<< '\n';
   }
 }
