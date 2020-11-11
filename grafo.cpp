@@ -64,7 +64,7 @@ void Grafo::aniadir_arista(const int orden_nodo,
 void Grafo::aniadir_nodo(const std::string instruccion){
   int orden_nodo = this->nodos.size();
   Nodo nodo(instruccion,orden_nodo);
-  this->nodos.push_back(nodo);
+  this->nodos.push_back(std::move(nodo));
 }
 
 Nodo::~Nodo(){
@@ -105,11 +105,4 @@ Nodo::Nodo(Nodo&& nodo){
   this->instruccion = std::move(nodo.instruccion);
   this->aristas = std::move(nodo.aristas);
   this->visitado = std::move(nodo.visitado);
-}
-
-Nodo::Nodo(const Nodo& nodo){
-  this->orden = nodo.orden;
-  this->instruccion = nodo.instruccion;
-  this->aristas = nodo.aristas;
-  this->visitado = nodo.visitado;
 }

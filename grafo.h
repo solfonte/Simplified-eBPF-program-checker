@@ -20,7 +20,7 @@ class Nodo{
     int orden_topologico() const;
     ~Nodo();
     Nodo(Nodo&& nodo);
-    Nodo(const Nodo& nodo);
+    Nodo(const Nodo& nodo) = delete;
 };
 
 class Grafo{
