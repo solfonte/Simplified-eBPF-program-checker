@@ -4,7 +4,7 @@
 #include <string>
 
 void Thread::procesar_archivo(){
-  std::string archivo_procesado = this->archivos->entregar_dato();
+  std::string archivo_procesado = this->archivos.entregar_dato_si_no_esta_vacio();
   if (archivo_procesado.size() == 0){
     return;
   }
@@ -18,20 +18,16 @@ void Thread::procesar_archivo(){
   std::string resultado(archivo_procesado);
   if (detector.detecto_ciclos(grafo)){
     resultado += " FAIL: cycle detected";
-    this->resultados->aniadir_dato(resultado);
+    this->resultados.aniadir_dato(resultado);
   }else if (detector.detecto_instrucciones_sin_utilizar(grafo)){
     resultado += " FAIL: unused instructions detected";
-    this->resultados->aniadir_dato(resultado);
+    this->resultados.aniadir_dato(resultado);
   }else{
     resultado += " GOOD";
-    this->resultados->aniadir_dato(resultado);
+    this->resultados.aniadir_dato(resultado);
   }
 }
-
-Thread::Thread(Contenedor_de_datos* archivos, Contenedor_de_datos* resultados){
-  this->archivos = archivos;
-  this->resultados = resultados;
-}
+/*
 
 Thread::Thread(Thread&& thread){
   this->thread = std::move(thread.thread);
@@ -40,7 +36,7 @@ Thread::Thread(Thread&& thread){
   thread.archivos = 0;
   thread.resultados = 0;
 }
-
+*/
 
 Thread::~Thread(){
 }
