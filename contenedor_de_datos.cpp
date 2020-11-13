@@ -32,7 +32,6 @@ std::string Contenedor_de_datos::entregar_dato_si_no_esta_vacio(){
 }
 
 void Contenedor_de_datos::imprimir_datos(){
-  std::lock_guard<std::mutex> lck(this->mutex);
   while (!this->datos.empty()){
     std::string temporal = this->entregar_dato_si_no_esta_vacio();
     std::cout << temporal<< '\n';

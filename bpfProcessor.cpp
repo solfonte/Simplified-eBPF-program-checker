@@ -1,5 +1,4 @@
 #include "bpfProcessor.h"
-#include <iostream>
 
 void BpfProcessor::run(){
   std::string archivo_procesado =
