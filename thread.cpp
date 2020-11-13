@@ -3,40 +3,10 @@
 #include <utility>
 #include <string>
 
-void Thread::procesar_archivo(){
-  std::string archivo_procesado = this->archivos.entregar_dato_si_no_esta_vacio();
-  if (archivo_procesado.size() == 0){
-    return;
-  }
-  Parser parser = Parser(archivo_procesado);
-  Grafo grafo = Grafo();
-  bool pude_inicializar = parser.run(grafo);
-  if (grafo.cantidad_nodos() == 0 || !pude_inicializar){
-    return;
-  }
-  Detector detector = Detector();
-  std::string resultado(archivo_procesado);
-  if (detector.detecto_ciclos(grafo)){
-    resultado += " FAIL: cycle detected";
-    this->resultados.aniadir_dato(resultado);
-  }else if (detector.detecto_instrucciones_sin_utilizar(grafo)){
-    resultado += " FAIL: unused instructions detected";
-    this->resultados.aniadir_dato(resultado);
-  }else{
-    resultado += " GOOD";
-    this->resultados.aniadir_dato(resultado);
-  }
+void Thread::start() {
+    this->thread = std::thread(&Thread::run, this);
 }
-/*
 
-Thread::Thread(Thread&& thread){
-  this->thread = std::move(thread.thread);
-  this->archivos = thread.archivos;
-  this->resultados = thread.resultados;
-  thread.archivos = 0;
-  thread.resultados = 0;
-}
-*/
-
-Thread::~Thread(){
+void Thread::join() {
+    this->thread.join();
 }

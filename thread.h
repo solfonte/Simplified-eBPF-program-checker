@@ -10,15 +10,14 @@
 class Thread{
   private:
     std::thread thread;
-    Contenedor_de_datos& archivos;
-    Contenedor_de_datos& resultados;
   public:
-    void procesar_archivo();
-    Thread(Contenedor_de_datos& archivos, Contenedor_de_datos& resultados):
-    archivos(archivos),resultados(resultados){}
-    ~Thread();
+    virtual void run() = 0;
+    void start();
+    void join();
+    Thread(){}
+    virtual ~Thread(){}
     Thread(const Thread& thread) = delete;
-    Thread(Thread&& thread) = delete;
+    Thread(Thread&& other) = delete;
 };
 
 #endif

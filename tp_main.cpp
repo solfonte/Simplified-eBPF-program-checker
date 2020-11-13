@@ -5,7 +5,7 @@
 #include "grafo.h"
 #include "detector.h"
 #include "contenedor_de_datos.h"
-#include "thread.h"
+#include "bpfProcessor.h"
 #define POSICION_ARCHIVOS 2
 #define POSICION_CANT_HILOS 1
 
@@ -20,22 +20,22 @@ int main(int argc, char** argv) {
 
     return 0;
   }
-  Contenedor_de_datos archivos(&(argv[POSICION_ARCHIVOS]),argc - POSICION_ARCHIVOS);
+  Contenedor_de_datos archivos(&(argv[POSICION_ARCHIVOS]),
+                              argc - POSICION_ARCHIVOS);
   Contenedor_de_datos resultados;
-  std::vector<Thread> threads;
+  std::vector<Thread*> threads;
 
   for (int i = 0; i < cantidad_de_hilos; i++){
-    Thread thread = Thread(&archivos,&resultados);
-    threads.push_back(std::move(thread));
+    threads.emplace_back(new BpfProcessor(archivos, resultados));
+    threads.back()->start();
   }
 
-  int i = 0;
-  while (!archivos.empty()){
-    threads[i].procesar_archivo();
-    i++;
-    if (i == cantidad_de_hilos) i = 0;
+  for (int i = 0; i < cantidad_de_hilos; i++){
+    threads[i]->join();
+    delete threads[i];
   }
 
   resultados.imprimir_datos();
+
     return 0;
 }

@@ -1,6 +1,7 @@
 #include "parser.h"
 #include <iostream>
 #include <utility>
+#include <sstream>
 
 Parser::Parser(const std::string& nombre_archivo){
   this->archivo = nombre_archivo;
@@ -65,6 +66,15 @@ static int verifica_salto(const std::string& linea){
 }
 
 static int parsear_linea(const std::string& linea){
+  std::istringstream iss(linea);
+	std::string tag, instruction, arg1, arg2;
+  if (linea.find(':') != std::string::npos) {
+  		std::getline(iss, tag, ':');
+  	}
+  	iss >> instruction;
+  	iss >> arg1;
+  	iss >> arg2;
+
   int tipo_salto = verifica_salto(linea);
     if (verifica_return(linea)){
       return RETURN;
@@ -121,7 +131,7 @@ static void asociar_segun_instruccion(Grafo& grafo,
 }
 
 static void inicializar_grafo(Grafo& grafo,
-                        const std::vector<std::string>instrucciones){
+                        const std::vector<std::string>& instrucciones){
   int cantidad_instrucciones = instrucciones.size();
   for (int i = 0; i < cantidad_instrucciones; i++){
     grafo.aniadir_nodo(instrucciones[i]);
