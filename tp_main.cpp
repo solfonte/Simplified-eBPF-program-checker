@@ -3,7 +3,6 @@
 #include <vector>
 #include "parser.h"
 #include "grafo.h"
-#include "detector.h"
 #include "contenedor_de_datos.h"
 #include "bpfProcessor.h"
 #define POSICION_ARCHIVOS 2

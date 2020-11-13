@@ -26,14 +26,14 @@ class Nodo{
 
 class Grafo{
   public:
-    bool realizar_recorrido_dfs();
     Grafo();
     Grafo(Grafo &&grafo);
     ~Grafo();
     void aniadir_arista(const int orden_nodo,const int orden_nodo_conectar);
     void aniadir_nodo(const std::string& instruccion);
     int cantidad_nodos() const;
-    bool hay_nodos_sin_visitar();
+    int cantidad_nodos();
+    Nodo& get_nodo_origen();
   private:
     std::vector<Nodo> nodos;
 };

@@ -2,30 +2,10 @@
 #include <utility>
 #include <stack>
 
-bool Grafo::realizar_recorrido_dfs(){
-  Nodo& origen = this->nodos[0];
-  bool hay_ciclo = false;
-  std::stack<Nodo*> pila = std::stack<Nodo*>();
-  origen.visitar();
-  pila.push(&origen);
-  while (!pila.empty()){
-    Nodo* vertice = pila.top();
-    pila.pop();
-    std::vector<Nodo*> &adyacentes = vertice->obtener_adyacentes();
-    int cantidad_ady = adyacentes.size();
-    for (int i = 0; i < cantidad_ady; i++) {
-      if ((vertice->orden_topologico() > adyacentes[i]->orden_topologico())
-          && adyacentes[i]->fue_visitado()){
-        hay_ciclo = true;
-      }
-      if (!adyacentes[i]->fue_visitado()){
-        adyacentes[i]->visitar();
-        pila.push(adyacentes[i]);
-      }
-    }
-  }
-  return hay_ciclo;
+Nodo& Grafo::get_nodo_origen(){
+  return this->nodos[0];
 }
+
 
 Grafo::Grafo(){
 }
@@ -39,18 +19,6 @@ Grafo::~Grafo(){
 
 int Grafo::cantidad_nodos() const{
   return this->nodos.size();
-}
-
-bool Grafo::hay_nodos_sin_visitar(){
-  std::vector<Nodo> &nodos = this->nodos;
-  bool hay_inst_no_usadas = false;
-    for (std::vector<Nodo>::iterator it = nodos.begin(); it
-        != nodos.end(); ++it) {
-         if (!(*it).fue_visitado()){
-           hay_inst_no_usadas = true;
-         }
-     }
-     return hay_inst_no_usadas;
 }
 
 void Grafo::aniadir_arista(const int orden_nodo,
@@ -108,4 +76,7 @@ Nodo& Nodo::operator=(Nodo&& other){
   this->aristas = std::move(other.aristas);
   this->visitado = std::move(other.visitado);
   return *this;
+}
+int Grafo::cantidad_nodos(){
+  return this->nodos.size();
 }

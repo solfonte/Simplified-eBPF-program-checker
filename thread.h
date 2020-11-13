@@ -4,7 +4,6 @@
 #include "contenedor_de_datos.h"
 #include "parser.h"
 #include "grafo.h"
-#include "detector.h"
 #include <thread>
 
 class Thread{
