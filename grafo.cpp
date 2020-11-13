@@ -28,7 +28,6 @@ bool Grafo::realizar_recorrido_dfs(){
 }
 
 Grafo::Grafo(){
-  nodos = std::vector<Nodo>();
 }
 
 Grafo::Grafo(Grafo &&grafo){
@@ -61,7 +60,7 @@ void Grafo::aniadir_arista(const int orden_nodo,
   nodo_aniadir_arista.aniadir_vecino(&nodo_apuntar);
 }
 
-void Grafo::aniadir_nodo(const std::string instruccion){
+void Grafo::aniadir_nodo(const std::string& instruccion){
   int orden_nodo = this->nodos.size();
   Nodo nodo(instruccion,orden_nodo);
   this->nodos.push_back(std::move(nodo));
@@ -78,10 +77,6 @@ Nodo::Nodo(const std::string &instruccion,const int &orden){
   this->orden = orden;
   this->instruccion = std::move(instruccion);
   this->aristas = std::vector<Nodo*>();
-}
-
-std::string Nodo::obtener_instruccion() const{
-  return this->instruccion;
 }
 
 void Nodo::aniadir_vecino(Nodo* nodo){
