@@ -101,3 +101,11 @@ Nodo::Nodo(Nodo&& nodo){
   this->aristas = std::move(nodo.aristas);
   this->visitado = std::move(nodo.visitado);
 }
+
+Nodo& Nodo::operator=(Nodo&& other){
+  this->orden = std::move(other.orden);
+  this->instruccion = std::move(other.instruccion);
+  this->aristas = std::move(other.aristas);
+  this->visitado = std::move(other.visitado);
+  return *this;
+}

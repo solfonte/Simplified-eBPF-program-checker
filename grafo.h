@@ -21,6 +21,7 @@ class Nodo{
     ~Nodo();
     Nodo(Nodo&& nodo);
     Nodo(const Nodo& nodo) = delete;
+    Nodo& operator=(Nodo&& other);
 };
 
 class Grafo{
