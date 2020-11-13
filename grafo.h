@@ -32,7 +32,6 @@ class Grafo{
     void aniadir_arista(const int orden_nodo,const int orden_nodo_conectar);
     void aniadir_nodo(const std::string& instruccion);
     int cantidad_nodos() const;
-    int cantidad_nodos();
     Nodo& get_nodo_origen();
   private:
     std::vector<Nodo> nodos;

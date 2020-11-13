@@ -77,6 +77,3 @@ Nodo& Nodo::operator=(Nodo&& other){
   this->visitado = std::move(other.visitado);
   return *this;
 }
-int Grafo::cantidad_nodos(){
-  return this->nodos.size();
-}
