@@ -18,3 +18,19 @@ Se implementó una clase contenedora de datos, la cual se instancia para guardar
 
 **Diagrama de clases**  
 ![Alt Text](clasestp2.png)
+
+**Modificaciones**  
+-Se modifico el uso de atoi por stoi.  
+-Ahora cada contenedor tiene su propio mutex, y ya no reciben un puntero a este.  
+-Al instanciarse el contenedor de datos para almacenar los archivos, el contenedor es quien se inicializa recibiendo el buffer de archivos en su contructor.   
+-Los threads ya no se allocan en el stack, si no que se guardan ahora en el heap.  
+-Ahora los hilos si se lanzan y luego se les realiza el join correspondiente luego de procesar todos los archivos. El lanzamiento de los hilos ya no depende de si el contenedor tiene o no archivos pendientes por procesar, sino que cada hilo se encarga de procesar hasta que no le entreguen mas archivos.  
+-Se añadio el metodo imprimir_datos() en la clase Contenedor_de_datos(), de manera que este comportamiento quede encapsulado en dicha clase.  
+-Se cambio el lock() y unlock() del mutex, por la clase RAII lock_guard que se encarga de realizar estas operaciones internamente.  
+-Se implemento el metodo obetener_dato_si_no_estoy_vacio() en la clase Contenedor_de_datos que verifica que hayan datos para entregar antes de entregar un dato, pero de manera protegida.  
+-Se creo la clase Dfs que, ademas de realizar el recorrido dfs devolviendo si hubo ciclos o no, se guarda la cantidad de nodos visitados de manera que ya no es necesario procesar dos veces el grafo para chequear si hay ciclos o instrucciones sin usar.  
+-Se modificaron los parametros recibidos por punteros (salvo para el caso del constructor del contenedor de datos, que recibe char**).  
+-Se elimino el constructor por copia de la clase Thread.  
+-Se modificaron las copias por pasajes por referencias.  
+-Se elimino el constructor por copia de la clase Nodo y se definio una asignación por movimiento.
+-Se elimino la clase Detector.  

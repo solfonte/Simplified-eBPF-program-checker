@@ -29,7 +29,7 @@ class Grafo{
     Grafo();
     Grafo(Grafo &&grafo);
     ~Grafo();
-    void aniadir_arista(const int orden_nodo,const int orden_nodo_conectar);
+    void aniadir_arista(const int& orden_nodo,const int& orden_nodo_conectar);
     void aniadir_nodo(const std::string& instruccion);
     int cantidad_nodos() const;
     Nodo& get_nodo_origen();

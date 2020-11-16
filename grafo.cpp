@@ -21,8 +21,8 @@ int Grafo::cantidad_nodos() const{
   return this->nodos.size();
 }
 
-void Grafo::aniadir_arista(const int orden_nodo,
-                          const int orden_nodo_conectar){
+void Grafo::aniadir_arista(const int& orden_nodo,
+                          const int& orden_nodo_conectar){
   Nodo& nodo_aniadir_arista = this->nodos[orden_nodo];
   Nodo& nodo_apuntar = this->nodos[orden_nodo_conectar];
   nodo_aniadir_arista.aniadir_vecino(&nodo_apuntar);
