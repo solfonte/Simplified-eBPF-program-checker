@@ -5,14 +5,14 @@ void BpfProcessor::run(){
   std::string archivo_procesado =
   this->archivos.entregar_dato_si_no_esta_vacio();
   while (archivo_procesado != ""){
-    Parser parser = Parser(archivo_procesado);
-    Grafo grafo = Grafo();
+    Parser parser(archivo_procesado);
+    Grafo grafo;
     bool pude_inicializar = parser.run(grafo);
     if (grafo.cantidad_nodos() == 0 || !pude_inicializar){
       return;
     }
     std::string resultado(archivo_procesado);
-    Dfs dfs = Dfs();
+    Dfs dfs;
     bool hay_ciclo = dfs.realizar_recorrido(grafo);
     int nodos_visitados = dfs.get_cantidad_nodos_visitados();
     int cantidad_nodos = grafo.cantidad_nodos();
