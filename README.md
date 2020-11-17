@@ -34,3 +34,4 @@ Se implementó una clase contenedora de datos, la cual se instancia para guardar
 -Se modificaron las copias por pasajes por referencias.  
 -Se elimino el constructor por copia de la clase Nodo y se definio una asignación por movimiento.
 -Se elimino la clase Detector.  
+-se agrego la clase BpfProcessor que hereda de Thread, y ademas se encarga del procesamiento de los archivos.  
